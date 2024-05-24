@@ -1,0 +1,90 @@
+/***********************************************
+### MainWindow.xaml.cs
+### 1. Tools > NuGet Package Manager > Package Manager Console
+### 2. Lent megnyít consoleba: dotnet add package MySql.Data --version 8.4.0
+### 3. File elejére: using MySql.Data.MySqlClient;
+### 4. Másold be a kódot (replacelheted vele a generált classt)
+### 5. Írd át a ??-t az adatbázis adataira
+### 6. Az utolsó function egy példa a SELECTre, figyelj a típusokra és az értékek sorrendjére
+***********************************************/
+
+
+public partial class MainWindow : Window
+{
+    private DBConnection DB;
+    public MainWindow()
+    {
+        InitializeComponent();
+        InitDB();
+        GetMovies(); // példa
+    }
+
+    private void InitDB()
+    {
+        DB = DBConnection.Instance();
+        DB.Server = "??"; // 127.0.0.1
+        DB.DatabaseName = "??"; // movies
+        DB.UserName = "??"; // root
+        DB.Password = "??"; //
+        if (!DB.IsConnect()) throw new Exception("Could not connect to database.");
+    }
+
+    private MySqlDataReader Query(string sql)
+    {
+        var cmd = new MySqlCommand(sql, DB.Connection);
+        return cmd.ExecuteReader();
+    }
+
+
+    private void GetMovies()
+    {
+        var sql = "SELECT id, title FROM movie";
+        var result = Query(sql);
+        while (result.Read())
+        {
+            var id = result.GetInt32(0);
+            var title = result.GetString(1);
+            Console.WriteLine($"ID: {id}, TITLE: {title}");
+        }
+    }
+}
+
+public class DBConnection
+{
+    private DBConnection(){}
+    ~DBConnection() => Close();
+
+    public string Server { get; set; }
+    public string DatabaseName { get; set; }
+    public string UserName { get; set; }
+    public string Password { get; set; }
+
+    public MySqlConnection Connection { get; set; }
+
+    private static DBConnection _instance = null;
+    public static DBConnection Instance()
+    {
+        if (_instance == null)
+            _instance = new DBConnection();
+        return _instance;
+    }
+
+    public bool IsConnect()
+    {
+        if (Connection == null)
+        {
+            if (string.IsNullOrEmpty(DatabaseName))
+                return false;
+            string connstring = string.Format("Server={0}; database={1}; UID={2}; password={3}", Server, DatabaseName, UserName, Password);
+            Connection = new MySqlConnection(connstring);
+            Connection.Open();
+        }
+
+        return true;
+    }
+
+    public void Close()
+    {
+        Connection.Close();
+    }
+}

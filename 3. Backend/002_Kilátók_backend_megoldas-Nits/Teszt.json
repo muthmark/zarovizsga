@@ -1,0 +1,72 @@
+{
+	"info": {
+		"_postman_id": "1e292dae-c9dd-4d55-b3b6-35eb0569b8c7",
+		"name": "Teszt",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5252233"
+	},
+	"item": [
+		{
+			"name": "nside",
+			"item": [
+				{
+					"name": "modifyPATCH",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"location\": 24\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/viewpoints/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"viewpoints",
+								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "oneside",
+			"item": [
+				{
+					"name": "getByLocationNames",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/mountains/Bükk/viewpoints",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"mountains",
+								"Bükk",
+								"viewpoints"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

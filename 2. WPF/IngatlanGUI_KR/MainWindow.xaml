@@ -1,0 +1,40 @@
+﻿<Window x:Class="RealEstateGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RealEstateGUI"
+        mc:Ignorable="d"
+        Title="Ingatlanok" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox Name="Eladók" Margin="5" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Name}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Column="1" Margin="5" DataContext="{Binding ElementName=Eladók, Path=SelectedItem}">
+            <StackPanel Grid.Column="1" Margin="5" Orientation="Horizontal">
+                <Label Content="Eladó neve: " MinWidth="150"/>
+                <Label  Content="{Binding Name}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Margin="5" Orientation="Horizontal">
+                <Label Content="Eladó telefonszáma: " MinWidth="150"/>
+                <Label Content="{Binding Phone}"/>
+            </StackPanel>
+
+            <Button Content="Hirdetések betöltése" Click="Button_Click"/>
+            <StackPanel Grid.Column="1" Margin="5" Orientation="Horizontal">
+                <Label Content="Hirdetések száma: " MinWidth="150"/>
+                <Label Content="0" Name="AdCount"/>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</Window>
