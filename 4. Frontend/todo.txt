@@ -1,6 +1,6 @@
 1. Install react => npm i react -g
 2. Create react app => npx create-react-app <appnev>
-3. Projectbe npm i => axios, bootstrap, react-router-dom
+3. Projectbe npm i => axios, bootstrap, react-router-dom, moment
 4. Install React extension => ES7+ React/Redux/React-Native snippets
 5. index.html => css link (<link rel="stylesheet" href="name.css">), title itt írható át
 6. index.js => Strictmode kiszedése
@@ -47,5 +47,6 @@
         </ul>
       </div>
 </nav>
-	
+9. Nem kötelező - Csinálj egy link elementet To="/utvonal"
+	state={data}
 
