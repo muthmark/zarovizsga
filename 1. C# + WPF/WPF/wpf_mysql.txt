@@ -1,7 +1,9 @@
 /***********************************************
 ### MainWindow.xaml.cs
 ### 1. Tools > NuGet Package Manager > Package Manager Console
-### 2. Lent megnyít consoleba: dotnet add package MySql.Data --version 8.4.0
+### 2. Lent megnyít consoleba:
+	 cd Projektnév
+	 dotnet add package MySql.Data --version 8.4.0
 ### 3. File elejére: using MySql.Data.MySqlClient;
 ### 4. Másold be a kódot (replacelheted vele a generált classt)
 ### 5. Írd át a ??-t az adatbázis adataira
@@ -88,3 +90,10 @@ public class DBConnection
         Connection.Close();
     }
 }
+
+/***********************************************
+### Projektbe
+### 1. Referenceként hozzáadod a CLI projektet
+### 2. Átirod a database infokat, kommenteled a példa functiont
+### 3. DBforge + xampp database importalasa
+***********************************************/
